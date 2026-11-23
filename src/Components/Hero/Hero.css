@@ -1,0 +1,266 @@
+.hero {
+    display: flex;
+    align-items: center;
+}
+
+.hero-inner {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .hero-inner {
+        padding: 5rem 2.5rem 1.5rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    .hero-inner {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        gap: 4rem;
+    }
+}
+
+.hero-greeting {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* small pulsing "online" dot */
+.hero-status {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.hero-status::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: status-ping 2s var(--ease) infinite;
+}
+
+@keyframes status-ping {
+    from { transform: scale(1); opacity: 0.7; }
+    to { transform: scale(3); opacity: 0; }
+}
+
+.hero-name {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3rem, 8vw, 5.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+}
+
+.hero-role {
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+    color: var(--text-secondary);
+}
+
+.hero-role span {
+    color: var(--accent);
+}
+
+.hero-intro {
+    margin-top: 1.5rem;
+    max-width: 36rem;
+    color: var(--text-secondary);
+}
+
+.hero-actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.hero-socials {
+    margin-top: 1.75rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.hero-socials .icon-button {
+    width: 40px;
+    height: 40px;
+}
+
+/* ---- terminal card ---- */
+.terminal {
+    border-radius: 14px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-raised);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    font-family: var(--font-mono);
+}
+
+.terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+.terminal-bar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rule-strong);
+}
+
+.terminal-bar span:first-child {
+    background: #ff5f57;
+}
+
+.terminal-bar span:nth-child(2) {
+    background: #febc2e;
+}
+
+.terminal-bar span:nth-child(3) {
+    background: #28c840;
+}
+
+.terminal-bar p {
+    margin-left: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+}
+
+.terminal-body {
+    padding: 1.1rem 1.15rem 1.3rem;
+    font-size: 0.8rem;
+    line-height: 1.75;
+    min-height: 23.5rem;
+}
+
+.term-step + .term-step {
+    margin-top: 0.6rem;
+}
+
+.term-cmd {
+    display: flex;
+    gap: 0.6rem;
+    color: var(--text-primary);
+}
+
+.term-prompt {
+    color: var(--accent);
+}
+
+/* command text is revealed one character at a time */
+.term-typed {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation-name: type;
+    animation-timing-function: steps(var(--chars), end);
+    animation-fill-mode: forwards;
+}
+
+@keyframes type {
+    to { width: calc((var(--chars) + 1) * 1ch); }
+}
+
+.term-out {
+    padding-left: 1.25rem;
+    white-space: pre-wrap;
+    color: var(--text-secondary);
+    opacity: 0;
+    animation: term-show 0.2s ease forwards;
+}
+
+/* git log rows: year, company, role */
+.term-log {
+    display: grid;
+    grid-template-columns: 2.8rem 6.8rem 1fr;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.term-log span:first-child {
+    color: var(--accent);
+}
+
+.term-log span:nth-child(2) {
+    color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+    .term-log {
+        grid-template-columns: 2.8rem 1fr;
+    }
+
+    .term-log {
+        white-space: normal;
+    }
+
+    .term-log span:nth-child(3) {
+        grid-column: 2;
+        margin-top: -0.35rem;
+        font-size: 0.75rem;
+    }
+}
+
+.term-idle {
+    margin-top: 0.6rem;
+    opacity: 0;
+    animation: term-show 0.2s ease forwards;
+}
+
+@keyframes term-show {
+    to { opacity: 1; }
+}
+
+.term-caret {
+    display: inline-block;
+    width: 8px;
+    height: 1.05em;
+    margin-top: 0.3em;
+    background: var(--accent);
+    animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+    50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .term-typed {
+        animation: none;
+        width: auto;
+    }
+
+    .term-out,
+    .term-idle {
+        animation: none;
+        opacity: 1;
+    }
+
+    .term-caret,
+    .hero-status::after {
+        animation: none;
+    }
+}

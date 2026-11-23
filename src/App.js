@@ -1,88 +1,52 @@
-import './App.css';
-import {
-  createBrowserRouter,
-  Outlet,
-  RouterProvider,
-  ScrollRestoration,
-} from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import NavBar from './Components/Navigation/Navbar';
-import Resume from './pages/Resume';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import Error404 from './Components/Error/Error404';
-import ProjectsPage from './pages/ProjectsPage';
 import Footer from './Components/Footer/Footer';
+import Error404 from './Components/Error/Error404';
+import GridBackground from './Components/UI/GridBackground';
+import { ScrollProgress } from './Components/UI/Motion';
+
+const Layout = ({ children }) => (
+  <>
+    <NavBar />
+    {children}
+    <Footer />
+  </>
+);
+
+// One scrolling page. The old tab routes now jump to their sections.
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <Layout>
+        <Outlet />
+      </Layout>
+    ),
+    errorElement: (
+      <Layout>
+        <Error404 />
+      </Layout>
+    ),
+    children: [
+      { path: '/', element: <Homepage /> },
+      { path: '/about', element: <Navigate to="/#about" replace /> },
+      { path: '/projects', element: <Navigate to="/#experience" replace /> },
+      { path: '/contact', element: <Navigate to="/#contact" replace /> },
+      { path: '/resume', element: <Navigate to="/#experience" replace /> },
+    ],
+  },
+]);
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: (
-        <>
-          <ScrollRestoration />
-          <NavBar />
-          <Outlet />
-          <Footer />
-        </>
-      ),
-      errorElement: (
-        <>
-          <ScrollRestoration />
-          <NavBar />
-          <Error404 />
-          <Footer />
-        </>
-      ),
-      children: [
-        {
-          path: '/',
-          element: (
-            <>
-              <Homepage />
-            </>
-          ),
-        },
-        {
-          path: '/resume',
-          element: (
-            <>
-              <Resume />
-            </>
-          ),
-        },
-        {
-          path: '/contact',
-          element: (
-            <>
-              <Contact />
-            </>
-          ),
-        },
-        {
-          path: '/about',
-          element: (
-            <>
-              <About />
-            </>
-          ),
-        },
-        {
-          path: '/projects',
-          element: (
-            <>
-              <ProjectsPage />
-            </>
-          ),
-        },
-      ],
-    },
-  ]);
-
   return (
-    <div className="main">
-      <RouterProvider router={router} />
-    </div>
+    <>
+      <GridBackground />
+      <ScrollProgress />
+      <div className="app-content">
+        <RouterProvider router={router} />
+      </div>
+    </>
   );
 }
 

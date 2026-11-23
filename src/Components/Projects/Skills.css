@@ -1,26 +1,47 @@
-@keyframes slide {
-    from {
-        transform: translateX(0);
+.skill-groups {
+    margin-top: 3rem;
+    border-top: 1px solid var(--rule);
+}
+
+.skill-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 768px) {
+    .skill-group {
+        grid-template-columns: 15rem 1fr;
+        gap: 2.5rem;
+        align-items: baseline;
     }
-    to {
-        transform: translateX(-100%);
-    }
 }
 
-.skills-wrapper {
-    animation: 15s slide infinite linear;
-    text-align: center;
-    display: inline-block;
-    animation-play-state: running;
-    width: max-content;
+.skill-group dt {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
 }
 
-.skills-section {
-    overflow: hidden;
-    white-space: nowrap;
-    text-align: center;
+.skill-group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
 }
 
-.skills-section:hover .skills-wrapper {
-    animation-play-state: paused;
+.skill-group li {
+    padding: 0.3rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s var(--ease);
+}
+
+.skill-group li:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
 }

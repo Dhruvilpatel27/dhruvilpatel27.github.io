@@ -1,18 +1,11 @@
-.error-page-wrapper {
-    margin-top: 50px;
-    padding: 25px;
+.error-page {
+    min-height: 60vh;
 }
 
-.error-404-title {
-    font-size: 100px;
-}
-
-@media (min-width: 768px) {
-    .error-404-title {
-        font-size: 200px;
-    }
-
-    .error-404-contents {
-        font-size: 30px;
-    }
+.error-title {
+    margin: 0.75rem 0 2rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    letter-spacing: -0.02em;
 }

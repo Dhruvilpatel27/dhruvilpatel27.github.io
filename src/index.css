@@ -1,82 +1,212 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+/* Cool graphite palette with a single lime accent. */
+
+/* ---- dark theme (default) ---- */
 :root {
-    --primary: #000;
-    --secondary: rgb(52, 156, 235);
+    color-scheme: dark;
+
+    --bg: #0b0d10;
+    --bg-raised: #12151a;
+    --text-primary: #e8ebef;
+    --text-secondary: #9aa3ad;
+    --text-tertiary: #646c76;
+    --accent: #c5f36b;
+    --accent-ink: #0b0d10;
+    --accent-soft: rgba(197, 243, 107, 0.12);
+    --rule: rgba(232, 235, 239, 0.09);
+    --rule-strong: rgba(232, 235, 239, 0.18);
+    --surface-navbar: rgba(11, 13, 16, 0.78);
+    --card-shadow: 0 24px 50px -30px rgba(0, 0, 0, 0.8);
+
+    /* read by the dot-grid canvas */
+    --grid-dot: 232, 235, 239;
+    --grid-accent: 197, 243, 107;
+
+    --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --max-width: 1160px;
+}
+
+/* ---- light theme (opt-in via toggle) ---- */
+:root[data-theme='light'] {
+    color-scheme: light;
+
+    --bg: #f5f6f3;
+    --bg-raised: #ffffff;
+    --text-primary: #0f1216;
+    --text-secondary: #4b535c;
+    --text-tertiary: #7b838c;
+    --accent: #4d7c0f;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(77, 124, 15, 0.1);
+    --rule: rgba(15, 18, 22, 0.09);
+    --rule-strong: rgba(15, 18, 22, 0.18);
+    --surface-navbar: rgba(245, 246, 243, 0.85);
+    --card-shadow: 0 24px 50px -32px rgba(15, 18, 22, 0.35);
+
+    --grid-dot: 15, 18, 22;
+    --grid-accent: 77, 124, 15;
 }
 
 html {
-    scroll-behavior:smooth
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
 }
 
-.main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-html, body, .main, #root {
+html, body, #root {
     min-height: 100vh;
-} 
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 body {
-    font-family:  'Lato', sans-serif;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    background: var(--bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.button {
-    padding: 15px;
-    color: white;
-    background-color: var(--secondary);
-    border-radius: 6px;
-    border: 2px solid var(--secondary);
-    width: 200px;
-    text-align: center;
-    transition: all 0.3s ease-in;
-    cursor: pointer;
+* {
+    min-width: 0;
 }
 
-.button:disabled {
-    cursor: default;
-    opacity: 0.7;
+::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
 }
 
-.button:hover:not([disabled]) {
-    background-color: white;
-    color: var(--primary);
-}
-
-.loading-wrapper {
+.app-content {
+    position: relative;
+    z-index: 1;
     display: flex;
-    position: fixed;
-    /* width: 100%; */
-    left: 0;
-    justify-content: center;
-    align-items: center;
-    /* text-align: center; */
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(255,255,255,0.7);
-    z-index: 9999;   
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-textarea.field-error {
-    border-color: red;
-}
-
-textarea {
+.app-content > section {
     width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font: inherit;
-    padding: 10px;
-    min-height: 200px;
-    outline: none;
 }
 
-textarea:focus {
-    border: 1px solid var(--secondary);
+/* shared centered section column */
+.page-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .page-section {
+        padding: 4.5rem 2.5rem;
+    }
+}
+
+/* small mono label, e.g. "01 / Experience" */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+}
+
+.eyebrow-index {
+    color: var(--text-tertiary);
+}
+
+.section-title {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 4.8vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.section-intro {
+    margin-top: 1rem;
+    max-width: 40rem;
+    color: var(--text-secondary);
+}
+
+/* ---- buttons ---- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.2s var(--ease), background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 12px 30px -12px var(--accent);
+}
+
+.btn-quiet {
+    border-color: var(--rule-strong);
+    color: var(--text-primary);
+    background: transparent;
+}
+
+.btn-quiet:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ---- scroll reveal ---- */
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

@@ -1,0 +1,112 @@
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+@media (min-width: 960px) {
+    .about-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 4rem;
+    }
+}
+
+.about-copy {
+    margin-top: 1.75rem;
+}
+
+.about-copy p {
+    max-width: 34rem;
+    color: var(--text-secondary);
+}
+
+.about-copy p + p {
+    margin-top: 1.1rem;
+}
+
+/* two overlapping snapshots, slightly tilted; hovering straightens and lifts one */
+.about-photos {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 520px;
+    width: 100%;
+    justify-self: center;
+}
+
+.snapshot {
+    margin: 0;
+    padding: 0.6rem 0.6rem 0.4rem;
+    border-radius: 10px;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule-strong);
+    box-shadow: var(--card-shadow);
+}
+
+.snapshot.in-view {
+    transition: transform 0.5s var(--ease), box-shadow 0.4s ease, opacity 0.8s var(--ease);
+}
+
+.snapshot-1.in-view {
+    transform: rotate(-3deg);
+}
+
+.snapshot-2.in-view {
+    transform: rotate(3deg) translateY(2.5rem);
+}
+
+.snapshot.in-view:hover {
+    transform: rotate(0) translateY(-6px) scale(1.03);
+    z-index: 2;
+}
+
+.snapshot img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.snapshot figcaption {
+    padding: 0.5rem 0.15rem 0.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .snapshot-1.in-view,
+    .snapshot-2.in-view,
+    .snapshot.in-view:hover {
+        transform: none;
+    }
+}
+
+/* About (left) and recommendations (right) share one section */
+.about-grid {
+    align-items: start;
+}
+
+.about-grid .about-photos {
+    margin-top: 2rem;
+    max-width: 380px;
+}
+
+.about-recs {
+    display: grid;
+    gap: 1rem;
+}
+
+.about-recs-heading {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.about-recs .rec {
+    padding: 1.4rem;
+}

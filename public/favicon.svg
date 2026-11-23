@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <pattern id="d" width="48" height="48" patternUnits="userSpaceOnUse">
+      <circle cx="24" cy="24" r="3.2" fill="#c5f36b" opacity="0.16"/>
+    </pattern>
+    <radialGradient id="g" cx="0.45" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#c5f36b" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#c5f36b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="#0b0d10"/>
+  <rect width="512" height="512" rx="116" fill="url(#d)"/>
+  <rect width="512" height="512" rx="116" fill="url(#g)"/>
+  <path d="M 140 160 L 252 256 L 140 352" fill="none" stroke="#c5f36b" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="286" y="314" width="104" height="42" rx="10" fill="#c5f36b"/>
+  <rect width="512" height="512" rx="116" fill="none" stroke="#c5f36b" stroke-opacity="0.22" stroke-width="8"/>
+</svg>

@@ -1,0 +1,107 @@
+.toolkit {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (min-width: 960px) {
+    .toolkit {
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    /* skills column is narrower here, so stack the label above the chips */
+    .toolkit-skills .skill-group {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+
+.toolkit-skills {
+    margin-top: 0;
+}
+
+.toolkit-skills .skill-group {
+    padding: 0.9rem 0;
+}
+
+.toolkit-side {
+    display: grid;
+    gap: 1rem;
+}
+
+.toolkit-card {
+    padding: 1.4rem;
+    border-radius: 16px;
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+}
+
+.toolkit-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+}
+
+.toolkit-projects li + li,
+.toolkit-certs li + li {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--rule);
+}
+
+.toolkit-kind,
+.toolkit-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+}
+
+.toolkit-title {
+    font-weight: 600;
+    margin: 0.15rem 0 0.3rem;
+}
+
+.toolkit-title a:hover {
+    color: var(--accent);
+}
+
+.toolkit-summary {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+.toolkit-certs li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.9rem;
+}
+
+.toolkit-pub {
+    display: flex;
+    gap: 0.45rem;
+    align-items: baseline;
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.toolkit-pub:hover {
+    color: var(--accent);
+}
+
+.toolkit-title a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}

@@ -1,0 +1,30 @@
+.grid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.grid-bg canvas {
+    position: absolute;
+    inset: 0;
+}
+
+/* faint accent glow at the top of the page */
+.grid-bg-glow {
+    position: absolute;
+    left: 50%;
+    top: -30vh;
+    width: 90vw;
+    height: 70vh;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, var(--accent-soft), transparent 70%);
+}
+
+/* fade the grid out toward the bottom so content stays calm */
+.grid-bg-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, var(--bg) 100%);
+    opacity: 0.6;
+}

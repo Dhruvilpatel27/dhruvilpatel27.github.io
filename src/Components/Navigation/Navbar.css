@@ -1,51 +1,201 @@
-header {
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.site-header.is-scrolled {
+    background: var(--surface-navbar);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom-color: var(--rule);
+}
+
+.site-header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    min-height: 68px;
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.navigation-items {
-    display: flex;
-}
-
-.mobile-navigation {
-    flex-direction: column;
-}
-
-.mobile-navigation .nav-links {
-    margin: 10px 0;
-}
-
-.desktop-navigation {
-    display: none;
-}
-
-.logo {
-    margin: auto;
-}
-
-.navigation-items a.active, .navigation-items a:hover {
-    color: var(--secondary);
+    justify-content: space-between;
+    gap: 1.5rem;
 }
 
 @media (min-width: 768px) {
-    .desktop-navigation {
-        display: block;
+    .site-header-inner {
+        padding: 0 2.5rem;
     }
+}
 
-    .mobile-navigation {
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.brand-mark {
+    width: 34px;
+    height: 34px;
+    transition: transform 0.3s var(--ease);
+}
+
+.brand:hover .brand-mark {
+    transform: rotate(-8deg) scale(1.05);
+}
+
+/* the prompt's cursor blinks like a real terminal */
+.brand-mark .logo-cursor {
+    animation: logo-blink 1.1s steps(1) infinite;
+}
+
+@keyframes logo-blink {
+    50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand-mark .logo-cursor {
+        animation: none;
+    }
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+}
+
+@media (max-width: 420px) {
+    .brand-name {
         display: none;
     }
+}
 
-    .hamburger-menu {
+.nav-desktop {
+    display: none;
+    gap: 1.9rem;
+}
+
+@media (min-width: 900px) {
+    .nav-desktop {
+        display: flex;
+    }
+}
+
+.nav-link {
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.resume-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 9px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent-ink);
+    background: var(--accent);
+    text-decoration: none;
+    transition: transform 0.2s var(--ease), box-shadow 0.25s ease;
+}
+
+.resume-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -12px var(--accent);
+}
+
+.icon-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    border: 1px solid var(--rule-strong);
+    background: transparent;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.icon-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+@media (min-width: 900px) {
+    .nav-toggle {
         display: none;
     }
+}
 
-    .logo {
-        margin: 0;
-    }
+.nav-mobile {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1.5rem 1.25rem;
+    border-top: 1px solid var(--rule);
+    animation: menu-in 0.25s var(--ease);
+}
 
-    header {
-        justify-content: space-around;
+.nav-mobile .nav-link {
+    padding: 0.7rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+.nav-mobile .nav-link::after {
+    display: none;
+}
+
+@keyframes menu-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 900px) {
+    .nav-mobile {
+        display: none;
     }
 }
