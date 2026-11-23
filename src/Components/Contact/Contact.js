@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FiMail, FiPhone, FiLinkedin, FiGithub, FiSend } from 'react-icons/fi';
+import { FiMail, FiLinkedin, FiGithub, FiSend } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
 import './Contact.css';
 import Reveal from '../UI/Reveal';
@@ -8,7 +8,6 @@ import { CONTACT } from '../../data/profile';
 
 const LINKS = [
   { label: 'Email', value: CONTACT.email, href: `mailto:${CONTACT.email}`, icon: <FiMail /> },
-  { label: 'Phone', value: CONTACT.phone, href: CONTACT.phoneHref, icon: <FiPhone /> },
   { label: 'LinkedIn', value: 'dhruvil-patel-dev', href: CONTACT.linkedin, icon: <FiLinkedin /> },
   { label: 'GitHub', value: 'Dhruvilpatel27', href: CONTACT.github, icon: <FiGithub /> },
   { label: 'LeetCode', value: 'Dhruvildragon', href: CONTACT.leetcode, icon: <SiLeetcode /> },

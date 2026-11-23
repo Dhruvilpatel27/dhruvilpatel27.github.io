@@ -75,7 +75,6 @@
 
 @media (min-width: 960px) {
     .fw-panel {
-        grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
         padding: 2.25rem;
         gap: 2.75rem;
     }
@@ -178,109 +177,9 @@
     color: var(--text-secondary);
 }
 
-/* ---- architecture flow: vertical chain of nodes with an animated connector ---- */
-.fw-flow {
-    padding: 1.25rem;
-    border-radius: 14px;
-    border: 1px dashed var(--rule-strong);
-    background:
-        radial-gradient(circle at 1px 1px, rgba(var(--grid-dot), 0.08) 1px, transparent 0) 0 0 / 16px 16px,
-        var(--bg);
-    align-self: start;
-}
-
-.fw-flow .fw-label {
-    margin-top: 0;
-}
-
-.fw-flow ol {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-}
-
-.fw-node {
-    position: relative;
-    padding: 0.65rem 0.85rem;
-    border-radius: 10px;
-    border: 1px solid var(--rule-strong);
-    background: var(--bg-raised);
-    opacity: 0;
-    animation: node-in 0.4s var(--ease) forwards;
-}
-
-.fw-node:first-child {
-    border-color: var(--accent);
-}
-
-/* connector line down to the next node, with a travelling dot */
-.fw-node:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 1.4rem;
-    top: 100%;
-    width: 2px;
-    height: 1.6rem;
-    background: linear-gradient(var(--accent), rgba(var(--grid-accent), 0.15));
-}
-
-.fw-node:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    left: calc(1.4rem - 2px);
-    top: 100%;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
-    animation: travel 1.8s ease-in-out infinite;
-}
-
-.fw-node-name {
-    display: block;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--text-primary);
-}
-
-.fw-node-note {
-    display: block;
-    margin-top: 0.15rem;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-tertiary);
-}
-
-@keyframes node-in {
-    from { opacity: 0; transform: translateX(8px); }
-    to { opacity: 1; transform: none; }
-}
-
-@keyframes travel {
-    from { transform: translateY(0); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    to { transform: translateY(calc(1.6rem - 6px)); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .fw-panel,
-    .fw-node {
-        animation: none;
-        opacity: 1;
-    }
-
-    .fw-node::before {
-        display: none;
-    }
-}
-
 /* ---- case study as a modal dialog (opened from Experience) ---- */
 .fw-dialog {
-    width: min(1080px, calc(100vw - 2rem));
+    width: min(820px, calc(100vw - 2rem));
     max-height: calc(100vh - 3rem);
     padding: 0;
     border: none;

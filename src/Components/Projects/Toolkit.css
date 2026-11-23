@@ -105,3 +105,11 @@
     align-items: center;
     gap: 0.3rem;
 }
+
+/* keep the certifications card short; the list scrolls inside it */
+.toolkit-certs {
+    max-height: 13rem;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    scrollbar-width: thin;
+}

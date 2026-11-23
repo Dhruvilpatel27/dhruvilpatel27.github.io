@@ -2,10 +2,9 @@ import { useEffect, useRef } from 'react';
 import { FiCheck, FiX } from 'react-icons/fi';
 import './FeaturedWork.css';
 
-// One project's story: what it is, what I did, impact and tools on the left,
-// and a small animated architecture flow on the right.
+// One project's story: what it is, what I did, impact and tools.
 export const CaseStudy = ({ item, labels = {} }) => {
-  const L = { what: 'What it is', did: 'What I did', flow: 'How it fits together', ...labels };
+  const L = { what: 'What it is', did: 'What I did', ...labels };
 
   return (
     <article className="fw-panel">
@@ -36,18 +35,6 @@ export const CaseStudy = ({ item, labels = {} }) => {
           {item.tools.map((t) => <li key={t}>{t}</li>)}
         </ul>
       </div>
-
-      <aside className="fw-flow" aria-label={L.flow}>
-        <p className="fw-label">{L.flow}</p>
-        <ol>
-          {item.flow.map((node, i) => (
-            <li key={node.name} className="fw-node" style={{ animationDelay: `${120 + i * 110}ms` }}>
-              <span className="fw-node-name">{node.name}</span>
-              {node.note && <span className="fw-node-note">{node.note}</span>}
-            </li>
-          ))}
-        </ol>
-      </aside>
     </article>
   );
 };
